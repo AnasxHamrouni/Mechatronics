@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<mujoco model="two_masses_three_springs">
+  <compiler angle="degree" coordinate="local"/>
+  <option timestep="0.001" integrator="RK4"/>
+
+  <asset>
+  </asset>
+
+  <worldbody>
+    <geom name="ground" type="plane" pos="0 0 0" size="0 0 0.01" rgba="0.9 0.9 0.9 1"/>
+
+    <body name="wall_left" pos="-0.30 0 0.10">
+      <geom name="wall_left_geom" type="box" size="0.03 0.20 0.12" rgba="0.6 0.2 0.2 1"
+            contype="0" conaffinity="0"/>
+      <site name="wall_left_site" pos="0.03 0 0.00" size="0.01"/>
+    </body>
+
+    <body name="wall_right" pos="0.30 0 0.10">
+      <geom name="wall_right_geom" type="box" size="0.03 0.20 0.12" rgba="0.6 0.2 0.2 1"
+            contype="0" conaffinity="0"/>
+      <site name="wall_right_site" pos="-0.03 0 0.00" size="0.01"/>
+    </body>
+
+    <body name="mass1" pos="-0.08 0 0.10" >
+      <joint name="slider1" type="slide" axis="1 0 0" damping="2"/>
+      <inertial pos="0 0 0" mass="1.0" diaginertia="0.001 0.002 0.001"/>
+      <geom name="mass1_geom" type="box" size="0.05 0.08 0.05" rgba="0.2 0.4 0.8 1"/>
+      <site name="mass1_site" pos="0.05 0 0" size="0.01"/>
+    </body>
+
+    <body name="mass2" pos="0.08 0 0.10">
+      <joint name="slider2" type="slide" axis="1 0 0" damping="2"/>
+      <inertial pos="0 0 0" mass="1.0" diaginertia="0.001 0.002 0.001"/>
+      <geom name="mass2_geom" type="box" size="0.05 0.08 0.05" rgba="0.2 0.8 0.4 1"/>
+      <site name="mass2_site" pos="-0.05 0 0" size="0.01"/>
+    </body>
+  </worldbody>
+
+  <tendon>
+    <spatial name="spring_left" stiffness="300" damping="5">
+      <site site="wall_left_site"/>
+      <site site="mass1_site"/>
+    </spatial>
+
+    <spatial name="spring_middle" stiffness="400" damping="5">
+      <site site="mass1_site"/>
+      <site site="mass2_site"/>
+    </spatial>
+
+    <spatial name="spring_right" stiffness="300" damping="5">
+      <site site="mass2_site"/>
+      <site site="wall_right_site"/>
+    </spatial>
+  </tendon>
+
+  <visual>
+    <map znear="0.01"/>
+  </visual>
+
+  <sensor>
+    <jointpos joint="slider1" name="x1"/>
+    <jointvel joint="slider1" name="v1"/>
+    <jointpos joint="slider2" name="x2"/>
+    <jointvel joint="slider2" name="v2"/>
+  </sensor>
+</mujoco>

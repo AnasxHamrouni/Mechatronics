@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<mujoco model="cart_pendulum_planar">
+  <compiler angle="degree" coordinate="local"/>
+  <option gravity="0 0 -9.81" timestep="0.001" integrator="RK4"/>
+  <asset>
+    <texture name="texgrid" type="2d" builtin="checker" 
+             rgb1="0.3 0.3 0.3" rgb2="0.35 0.35 0.35" width="512" height="512"/>
+    <material name="mat_ground" texture="texgrid" texrepeat="4 4"/>
+  </asset>
+
+  <worldbody>
+    <geom name="ground" type="plane" pos="0 0 0" size="5 5 0.01" material="mat_ground"/>
+
+    <body name="cart" pos="0 0 0.15">
+      <joint name="slider" type="slide" axis="1 0 0" damping="5" frictionloss="1"/>
+      <geom name="cart_box" type="box" size="0.15 0.1 0.08" rgba="0.2 0.5 0.8 1"/>
+      <geom name="wheel_left" type="cylinder" pos="-0.1 0 -0.08" size="0.05 0.02" 
+            euler="90 0 0" rgba="0.1 0.1 0.1 1" contype="0" conaffinity="0"/>
+      <geom name="wheel_right" type="cylinder" pos="0.1 0 -0.08" size="0.05 0.02" 
+            euler="90 0 0" rgba="0.1 0.1 0.1 1" contype="0" conaffinity="0"/>
+      <site name="pivot" pos="0 0 0.08" size="0.01"/>
+
+      <body name="pendulum" pos="0 0 0.08">
+        <joint name="theta" type="hinge" axis="0 1 0" damping="0.01"/>
+        <inertial pos="0 0 -0.1" mass="0.6" diaginertia="0.0004 0.0004 0.0004"/>
+        <geom name="rod" type="capsule" fromto="0 0 0  0 0 -0.2" size="0.01" 
+              rgba="0.6 0.6 0.2 1"/>
+        <geom name="bob" type="sphere" pos="0 0 -0.2" size="0.03" rgba="0.9 0.3 0.3 1"/>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <velocity name="cart_vel" joint="slider" kv="200" ctrllimited="true" ctrlrange="-5 5"/>
+  </actuator>
+
+  <sensor>
+    <jointpos joint="slider" name="x_cart"/>
+    <jointvel joint="slider" name="v_cart"/>
+    <jointpos joint="theta" name="theta"/>
+    <jointvel joint="theta" name="omega_theta"/>
+    <actuatorfrc actuator="cart_vel" name="cart_force_sensed"/>
+    <framepos objtype="site" objname="pivot" name="pivot_pos"/>
+  </sensor>
+
+  <keyframe>
+    <key qpos="0 10" qvel="0 0"/>
+  </keyframe>
+</mujoco>
