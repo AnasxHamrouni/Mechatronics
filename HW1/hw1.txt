@@ -1,0 +1,10 @@
+
+# terminal script to set renderer to avoid black screen
+MUJOCO_GL=glfw python -m mujoco.viewer --mjcf=/Users/anashamrouni/Downloads/mujoco_menagerie-main/boston_dynamics_spot/spot_arm.xml    
+
+cccc
+MUJOCO_GL=glfw python -m mujoco.viewer --mjcf=/Users/anashamrouni/Documents/InnopolisUniversity/Bachelor/Mechatronics/HW1/DPendulum.xml
+
+/Users/anashamrouni/Downloads
+
+/Users/anashamrouni/Documents/InnopolisUniversity/Bachelor/Mechatronics/HW1/DPendulum.xml

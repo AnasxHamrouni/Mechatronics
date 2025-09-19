@@ -1,0 +1,17 @@
+<mujoco model="double_pendulum">
+  <compiler angle="radian"/>
+
+  <worldbody>
+    <light pos="0 0 1" dir="0 0 -1"/>
+    <body name="link_1">
+      <joint name="joint_1" pos="0 0 0" axis="0 1 0"/>
+      <geom size="0.02 0.015" euler="1.57 0 0" conaffinity="0" contype="0" type="cylinder" rgba="0.3 0.9 0.3 0.4" density="0"/>
+      <geom size="0.01 0.01 0.05" pos="0 0 -0.05" type="box" mass="1"/>
+      <body name="link_2" pos="0 0 -0.1">
+        <joint name="joint_2" pos="0 0 0" axis="0 1 0"/>
+        <geom size="0.02 0.015" euler="1.57 0 0" conaffinity="0" contype="0" type="cylinder" rgba="0.3 0.9 0.3 0.4" density="0"/>
+        <geom size="0.01 0.01 0.05" pos="0.05 0 0" quat="0.707107 0 -0.707107 0" type="box" mass="1"/>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>
