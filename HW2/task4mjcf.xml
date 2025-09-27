@@ -7,21 +7,21 @@
     <light directional="false" pos="0 0 2" diffuse="0.8 0.8 0.8"/>
     <body name="link_1" pos="0 0 0">
       <joint name="joint_1" type="hinge" axis="0 1 0" limited="false"/>
-      <inertial pos="0 0 -0.15" mass="1.20" diaginertia="0.003 0.003 0.003"/>
+      <inertial pos="0 0 -0.15" mass="1.20" diaginertia="0.00936 0.00936 0.00072"/>
       <geom name="joint1_vis" type="cylinder" size="0.04 0.03"
             pos="0 0 0" euler="1.5708 0 0" rgba="0.12 0.35 0.90 1"/>
       <geom name="link1_box" type="box" size="0.03 0.03 0.15"
             pos="0 0 -0.15" rgba="0.78 0.78 0.78 1"/>
       <body name="link_2" pos="0 0 -0.30">
         <joint name="joint_2" type="hinge" axis="0 1 0" limited="false"/>
-        <inertial pos="0.175 0 0" mass="1.00" diaginertia="0.0025 0.0025 0.0025"/>
+        <inertial pos="0.175 0 0" mass="1.00" diaginertia="0.00060 0.010508 0.010508"/>
         <geom name="joint2_vis" type="cylinder" size="0.04 0.03"
               pos="0 0 0" euler="1.5708 0 0" rgba="0.12 0.35 0.90 1"/>
         <geom name="link2_box" type="box" size="0.03 0.03 0.175"
               pos="0.175 0 0" euler="0 1.5708 0" rgba="0.78 0.78 0.78 1"/>
         <body name="link_3" pos="0.35 0 0" euler="0 -0.785398 0">
           <joint name="joint_3" type="hinge" axis="0 1 0" limited="false"/>
-          <inertial pos="0.225 0 0" mass="0.95" diaginertia="0.002 0.002 0.002"/>
+          <inertial pos="0.225 0 0" mass="0.95" diaginertia="0.00057 0.016316 0.016316"/>
           <geom name="joint3_vis" type="cylinder" size="0.04 0.03"
                 pos="0 0 0" euler="1.5708 0 0" rgba="0.12 0.35 0.90 1"/>
           <geom name="link3_box" type="box" size="0.03 0.03 0.225"
