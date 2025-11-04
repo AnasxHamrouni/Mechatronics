@@ -1,0 +1,8 @@
+$env:MUJOCO_GL = "glfw"
+python -m mujoco.viewer --mjcf "C:\\Users\\anask\\Downloads\\repo\\urdf\\universalUR3.urdf"
+
+$env:MUJOCO_GL = "glfw"
+python -m mujoco.viewer --mjcf "C:\\Users\\anask\\Downloads\\repo\\urdf\\ur3_no_reflected_inertia.xml"
+
+
+C:\Users\anask\Downloads\repo\urdf\ur3_no_reflected_inertia.xml

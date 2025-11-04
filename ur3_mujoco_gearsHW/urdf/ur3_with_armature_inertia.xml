@@ -1,0 +1,95 @@
+<mujoco model="ur3_with_armature_inertia">
+  <compiler angle="radian" coordinate="local" meshdir="." />
+  <option integrator="RK4" timestep="0.001"/>
+
+  <asset>
+    <material name="LightGrey" rgba="0.7 0.7 0.7 1"/>
+    <mesh name="base" file="base.stl"/>
+    <mesh name="shoulder" file="shoulder.stl"/>
+    <mesh name="upperarm" file="upperarm.stl"/>
+    <mesh name="forearm" file="forearm.stl"/>
+    <mesh name="wrist1" file="wrist1.stl"/>
+    <mesh name="wrist2" file="wrist2.stl"/>
+    <mesh name="wrist3" file="wrist3.stl"/>
+  </asset>
+
+  <worldbody>
+    <body name="base_link" pos="0 0 0">
+      <geom type="mesh" mesh="base" material="LightGrey"/>
+      <inertial pos="0 0 0" mass="2.0"
+                diaginertia="0.0030531654454 0.0030531654454 0.005625"/>
+
+      <body name="shoulder_link" pos="0 0 0.1519">
+        <joint name="shoulder_pan_joint" type="hinge" axis="0 0 1" limited="true"
+               range="-6.28318530718 6.28318530718" armature="0.005625"/>
+        <geom type="mesh" mesh="shoulder" material="LightGrey"/>
+        <inertial pos="0 0 0" mass="2.0"
+                  diaginertia="0.16602525 0.16602525 0.3320505"/>
+
+        <body name="upper_arm_link" pos="0 0.1198 0" euler="0 1.57079632679 0">
+          <joint name="shoulder_lift_joint" type="hinge" axis="0 1 0" limited="true"
+                 range="-6.28318530718 6.28318530718" armature="0.0217284832211"/>
+          <geom type="mesh" mesh="upperarm" material="LightGrey"/>
+          <inertial pos="0 0 0.121825" mass="3.42"
+                    diaginertia="0.1801318582211 0.3481539832211 0.168022125"/>
+
+          <body name="forearm_link" pos="0 -0.0925 0.24365">
+            <joint name="elbow_joint" type="hinge" axis="0 1 0" limited="true"
+                   range="-3.14159265359 3.14159265359" armature="0.00654680644378"/>
+            <geom type="mesh" mesh="forearm" material="LightGrey"/>
+            <inertial pos="0 0 0.106625" mass="1.26"
+                      diaginertia="0.06752113144378 0.13203920644378 0.064528075"/>
+
+            <body name="wrist_1_link" pos="0 0 0.21325" euler="0 1.57079632679 0">
+              <joint name="wrist_1_joint" type="hinge" axis="0 1 0" limited="true"
+                     range="-6.28318530718 6.28318530718" armature="0.002084999166"/>
+              <geom type="mesh" mesh="wrist1" material="LightGrey"/>
+              <inertial pos="0 0 0" mass="0.8"
+                        diaginertia="0.004081199166 0.008327399166 0.0042462"/>
+
+              <body name="wrist_2_link" pos="0 0.08505 0">
+                <joint name="wrist_2_joint" type="hinge" axis="0 0 1" limited="true"
+                       range="-6.28318530718 6.28318530718" armature="0.00225"/>
+                <geom type="mesh" mesh="wrist2" material="LightGrey"/>
+                <inertial pos="0 0 0" mass="0.8"
+                          diaginertia="0.0042462 0.0042462 0.0084924"/>
+
+                <body name="wrist_3_link" pos="0 0 0.08535">
+                  <joint name="wrist_3_joint" type="hinge" axis="0 1 0" limited="true"
+                         range="-6.28318530718 6.28318530718" armature="0.000912187135125"/>
+                  <geom type="mesh" mesh="wrist3" material="LightGrey"/>
+                  <inertial pos="0 0 0" mass="0.35"
+                            diaginertia="0.0035411996351250004 0.007154587135125 0.0036133875"/>
+
+                  <body name="ee_link" pos="0 0.0819 0" euler="0 0 1.57079632679">
+                    <geom type="box" size="0.005 0.005 0.005" rgba="0.2 0.8 0.2 1"/>
+                    <inertial pos="-0.01 0 0" mass="0.01"
+                              diaginertia="1e-6 1e-6 1e-6"/>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position name="shoulder_pan_motor" joint="shoulder_pan_joint" kp="200"/>
+    <position name="shoulder_lift_motor" joint="shoulder_lift_joint" kp="200"/>
+    <position name="elbow_motor" joint="elbow_joint" kp="200"/>
+    <position name="wrist_1_motor" joint="wrist_1_joint" kp="200"/>
+    <position name="wrist_2_motor" joint="wrist_2_joint" kp="200"/>
+    <position name="wrist_3_motor" joint="wrist_3_joint" kp="200"/>
+  </actuator>
+
+  <sensor>
+    <jointpos name="shoulder_pan_pos" joint="shoulder_pan_joint"/>
+    <jointpos name="shoulder_lift_pos" joint="shoulder_lift_joint"/>
+    <jointpos name="elbow_pos" joint="elbow_joint"/>
+    <jointpos name="wrist_1_pos" joint="wrist_1_joint"/>
+    <jointpos name="wrist_2_pos" joint="wrist_2_joint"/>
+    <jointpos name="wrist_3_pos" joint="wrist_3_joint"/>
+  </sensor>
+</mujoco>
