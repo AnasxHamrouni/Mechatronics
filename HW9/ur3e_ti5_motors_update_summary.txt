@@ -1,0 +1,98 @@
+
+Used motors:
+
+1. CRA-RI60-90-PRO-101 (Base & Shoulder)
+   - Mass: 1.30 kg
+   - Length: 71.9 mm
+   - Hollow shaft: 14.5 mm
+   - Rotor inertia: 594 g·cm² = 0.0000594 kg·m²
+   - Calculated housing inertia:
+     • I_xx = I_yy: 0.000996 kg·m²
+     • I_zz: 0.000872 kg·m²
+
+2. CRA-RI60-70-PRO-S-121 (Elbow)
+   - Mass: 0.69 kg
+   - Length: 70.7 mm
+   - Hollow shaft: 18.0 mm
+   - Rotor inertia: 382 g·cm² = 0.0000382 kg·m²
+   - Calculated housing inertia:
+     • I_xx = I_yy: 0.000519 kg·m²
+     • I_zz: 0.000463 kg·m²
+
+3. CRA-RI50-60-PRO-S-101 (Wrist 1, 2, 3)
+   - Mass: 0.42 kg
+   - Length: 60.0 mm
+   - Hollow shaft: 12.0 mm
+   - Rotor inertia: 112 g·cm² = 0.0000112 kg·m²
+   - Calculated housing inertia:
+     • I_xx = I_yy: 0.000224 kg·m²
+     • I_zz: 0.000197 kg·m²
+
+
+Updated links(mjmodel.xml)
+
+shoulder_link:
+  Mass: 2.00 kg → 3.30 kg (+1.30 kg motor)
+  Inertia (diagonal):
+    Ixx: 0.008093 → 0.009089 kg·m² 
+    Iyy: 0.008093 → 0.009089 kg·m² 
+    Izz: 0.005625 → 0.006497 kg·m² 
+
+upper_arm_link:
+  Mass: 3.42 kg → 4.72 kg (+1.30 kg motor)
+  COM: [-0.121825, 0, 0.120] → [-0.088272, 0, 0.086949] m
+  Inertia (diagonal):
+    Ixx: 0.021729 → 0.036289 kg·m² 
+    Iyy: 0.021729 → 0.050268 kg·m² 
+    Izz: 0.009619 → 0.024470 kg·m² 
+
+forearm_link:
+  Mass: 1.26 kg → 1.95 kg (+0.69 kg motor)
+  COM: [-0.1066, 0, 0.027] → [-0.068880, 0, 0.017446] m
+  Inertia (diagonal):
+    Ixx: 0.006545 → 0.007388 kg·m² 
+    Iyy: 0.006545 → 0.012455 kg·m² 
+    Izz: 0.003544 → 0.009073 kg·m² 
+
+wrist_1_link:
+  Mass: 0.80 kg → 1.22 kg (+0.42 kg motor)
+  COM: [0, 0, 0] → [0, 0, 0] m 
+  Inertia (diagonal):
+    Ixx: 0.002085 → 0.002309 kg·m² 
+    Iyy: 0.002085 → 0.002309 kg·m² 
+    Izz: 0.002250 → 0.002447 kg·m² 
+
+wrist_2_link:
+  Mass: 0.80 kg → 1.22 kg (+0.42 kg motor)
+  COM: [0, 0, 0] → [0, 0, 0] m 
+  Inertia (diagonal):
+    Ixx: 0.002085 → 0.002309 kg·m² 
+    Iyy: 0.002085 → 0.002309 kg·m² 
+    Izz: 0.002250 → 0.002447 kg·m² 
+
+wrist_3_link:
+  Mass: 0.35 kg → 0.77 kg (+0.42 kg motor)
+  COM: [0, 0, -0.020] → [0, 0, -0.009091] m
+  Inertia (diagonal):
+    Ixx: 0.000136 → 0.000437 kg·m² 
+    Iyy: 0.000136 → 0.000437 kg·m² 
+    Izz: 0.000179 → 0.000376 kg·m² 
+
+
+Joint                      Armature (kg·m²)    
+shoulder_pan_joint         0.6059              
+shoulder_lift_joint        0.6059             
+elbow_joint                0.6457             
+wrist_1_joint              0.1265              
+wrist_2_joint              0.1265              
+wrist_3_joint              0.1265         
+
+Motor Name              Joint                   Control Range (N·m)
+--------------------------------------------------------------------
+shoulder_pan_motor      shoulder_pan_joint      [-102, 102]
+shoulder_lift_motor     shoulder_lift_joint     [-102, 102]
+elbow_motor             elbow_joint             [-66, 66]
+wrist_1_motor           wrist_1_joint           [-34, 34]
+wrist_2_motor           wrist_2_joint           [-34, 34]
+wrist_3_motor           wrist_3_joint           [-34, 34]
+

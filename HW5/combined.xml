@@ -1,0 +1,74 @@
+<mujoco>
+  <visual>
+    <global elevation="-20"/>
+    <headlight ambient=".3 .3 .3" diffuse=".9 .9 .9"/>
+  </visual>
+
+  <default>
+    <geom rgba="0.8 0.6 .4 1"/>
+  </default>
+
+  <worldbody>
+    <!-- Left pendulum -->
+    <body name="link1">
+      <joint name="link1" axis="0 -1 0"/>
+      <geom type="capsule" size=".02" fromto="0 0 0 1 0 0" mass="0"/>
+      <geom type="sphere" size=".1" mass="1" pos="1 0 0"/>
+    </body>
+
+    <body name="motor1">
+      <joint name="motor1" axis="0 -1 0"/>
+      <geom type="box" size=".1 .1 .1" mass="30" contype="0" conaffinity="0" rgba=".6 .4 .8 1"/>
+    </body>
+
+
+    <!-- 1. Original link2 (armature, actuated) -->
+    <body name="link2_1" pos="2 0 0">
+      <joint name="link2_1" armature="1.8" axis="0 -1 0"/>
+      <geom type="capsule" size=".02" fromto="0 0 0 1 0 0" mass="0"/>
+      <geom type="sphere" size=".1" mass="1" pos="1 0 0"/>
+    </body>
+
+    <!-- 2. Free-swinging link2 -->
+    <body name="link2_2" pos="5 0 0">
+      <joint name="link2_2" armature="1.8" axis="0 -1 0" />
+      <geom type="capsule" size=".02" fromto="0 0 0 1 0 0" mass="0"/>
+      <geom type="sphere" size=".1" mass="1" pos="1 0 0"/>
+    </body>
+
+    <!-- 3. Free with attached body at tip -->
+    <body name="link2_3" pos="7 0 0">
+      <joint name="link2_3" armature="1.8" axis="0 -1 0" />
+      <geom type="capsule" size=".02" fromto="0 0 0 1 0 0" mass="0"/>
+      <geom type="sphere" size=".1" mass="1" pos="1 0 0"/>
+      <body name="attached_body" pos="1 0 0">
+        <geom type="box" size=".1 .05 .05" mass="0.5" rgba=".2 .6 .8 1"/>
+      </body>
+    </body>
+
+    <!-- 4. Reinforced joint -->
+    <body name="link2_4" pos="9 0 0">
+      <joint name="link2_4" armature="2.5" axis="0 -1 0" />
+      <geom type="capsule" size=".02" fromto="0 0 0 1 0 0" mass="0"/>
+      <geom type="sphere" size=".1" mass="1" pos="1 0 0"/>
+      <body name="joint_reinforcement" pos="0 0 0">
+        <geom type="box" size=".1 .1 .1" mass="1" rgba=".8 .2 .2 1"/>
+      </body>
+    </body>
+
+  </worldbody>
+
+  <equality>
+    <joint joint1="motor1" joint2="link1" polycoef="0 3"/>
+  </equality>
+
+  <actuator>
+    <!-- Only left pendulum actuated -->
+    <position name="link1" joint="motor1" kp=".3" ctrlrange="-5 5"/>
+    <position name="link2_1" joint="link2_1" kp=".3" ctrlrange="-5 5" gear="3"/>
+  </actuator>
+
+  <keyframe>
+    <key name="initial_pose" qpos="0 0 0.4"/>
+  </keyframe>
+</mujoco>
