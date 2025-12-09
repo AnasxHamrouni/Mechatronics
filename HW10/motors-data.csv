@@ -1,0 +1,7 @@
+"MotorName","Joint","Ti5 Model","Control Range","MaxTorqueNm","Power","MaxSpeedRPM","GearRatio"
+"shoulder_pan_motor","shoulder_pan_joint","CRA-RI60-90-PRO-101","[-102, 102] N·m","102","500 W","40","101"
+"shoulder_lift_motor","shoulder_lift_joint","CRA-RI60-90-PRO-101","[-102, 102] N·m","102","500 W","40","101"
+"elbow_motor","elbow_joint","CRA-RI60-70-PRO-S-121","[-66, 66] N·m","66","300 W","32","121"
+"wrist_1_motor","wrist_1_joint","CRA-RI50-60-PRO-S-101","[-34, 34] N·m","34","150 W","49","101"
+"wrist_2_motor","wrist_2_joint","CRA-RI50-60-PRO-S-101","[-34, 34] N·m","34","150 W","49","101"
+"wrist_3_motor","wrist_3_joint","CRA-RI50-60-PRO-S-101","[-34, 34] N·m","34","150 W","49","101"
